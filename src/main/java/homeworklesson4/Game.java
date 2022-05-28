@@ -114,7 +114,7 @@ public class Game {
 
        if(isTurnHuman()) {
            if(checkWin(human.getColumnNumber(), human.getRowNumber() )){
-               System.out.println("Игрок победил");
+               System.out.println("Ура!!!Вы победил");
                return true;
            }
        }
@@ -172,17 +172,13 @@ public class Game {
             if(y >= 0 && y < map.getSize()) {
                 str.append(map.getDotMap(y, x));
             }
-            else {
-                System.out.println("Строка" + str);
-                return str.toString();
-            }
+
         }
-        System.out.println("Строка" + str);
         return str.toString();
     }
 
     private String getStringNegativeDiagonal(int x, int y) {
-        // y = -x + b сделать x от 0 до size y не от 0 до size не вносить
+        // y = -x + b
         int b = y + x;
         StringBuilder str = new StringBuilder();
         for (int i = 0; i < map.getSize(); i++) {

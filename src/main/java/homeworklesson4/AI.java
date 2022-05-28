@@ -27,6 +27,7 @@ public class AI {
         do {
             rowNumber = random.nextInt(map.getSize());
             columnNumber = random.nextInt(map.getSize());
+
         } while (!map.isCellFree(columnNumber, rowNumber));
 
         map.drawMap(columnNumber, rowNumber, map.getDOT_AI());
