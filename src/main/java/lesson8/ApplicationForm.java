@@ -84,7 +84,7 @@ public class ApplicationForm extends JFrame {
                         inputField.setText(number);
                         calculator.setIsStartLine(false);
                     }
-                    else {
+                    else if(Double.parseDouble(inputField.getText()) != 0){
                         inputField.setText(inputField.getText() + number);
                     }
                 }
@@ -160,7 +160,11 @@ public class ApplicationForm extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 String text = inputField.getText();
-                if(text.length() > 1) {
+                if(text.length() == 1) {
+                    calculator.setIsStartLine(true);
+                    inputField.setText(text.substring(0, 0));
+                }
+                else if(text.length() > 1) {
                     inputField.setText(text.substring(0, text.length()-1));
                 }
             }
@@ -174,11 +178,12 @@ public class ApplicationForm extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 String text = inputField.getText();
-                if(text.charAt(0) != '-') {
-                    inputField.setText("-" + inputField.getText());
-                }
-                else {
-                    inputField.setText(text.replace(text.charAt(0), ' ').trim());
+                if(!calculator.isStartLine()) {
+                    if (text.charAt(0) != '-' && text.charAt(0) != '0') {
+                        inputField.setText("-" + inputField.getText());
+                    } else if (text.charAt(0) != '0') {
+                        inputField.setText(text.replace(text.charAt(0), ' ').trim());
+                    }
                 }
             }
         });
@@ -273,6 +278,7 @@ public class ApplicationForm extends JFrame {
                    calculator.addCalc(inputField.getText());
                    calculator.calc();
                    calculator.setIsStartLine(true);
+                   calculator.clear();
                }
             }
         });

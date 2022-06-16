@@ -1,6 +1,7 @@
 package lesson8;
 
 import javax.swing.*;
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 
 public class Calc {
@@ -18,9 +19,7 @@ public class Calc {
             elements.add(s);
             System.out.println(s);
         }
-//        public void removeLast(){
-//            elements.remove(elements.size()-1);
-//        }
+
         public void clear(){
             isStart = true;
             elements.clear();
@@ -45,8 +44,14 @@ public class Calc {
             for(String s : elements) {
                 System.out.println(s);
             }
-            inputField.setText(elements.get(0));
 
+            inputField.setText(editOutput(elements.get(0)));
+
+        }
+        private String editOutput(String result) {
+            Double output = Double.parseDouble(result);
+            DecimalFormat format = new DecimalFormat("0.###");
+            return format.format(output);
         }
 
 
